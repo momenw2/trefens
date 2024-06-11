@@ -8,6 +8,7 @@ body {
   background-color: black;
   margin: 0;
   padding: 0;
+  color: whitesmoke;
 }
 
 .firstDiv {
@@ -175,4 +176,41 @@ body {
   height: 400px;
   background-image: linear-gradient(90deg, #000 a, #000 4, #000 a);
   transform: translate(-50%, -50%);
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contentFirstBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 70px;
+}
+
+.mainColor {
+  color: #5d00ff;
+}
+
+.firstBoxImg img {
+  width: 500px;
+  height: 700px;
+  border-radius: 20% 50%;
+}
+
+.firstBoxTxt {
+  width: 100%;
+  height: auto;
+}
+
+.firstBoxTxt h2 {
+  font-size: 90px;
+}
+
+.firstBoxTxt h4 {
+  font-size: 20px;
+  font-weight: 500;
 }
