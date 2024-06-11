@@ -40,7 +40,7 @@
   content: "TREFFENS TREFFENS TREFFENS";
   font-size: 96px;
   width: max-content;
-  color: #a2ff00;
+  color: #5d00ff;
 }
 .panel:nth-child(1) {
   --left: 0px;
