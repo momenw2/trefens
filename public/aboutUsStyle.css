@@ -14,11 +14,13 @@ body {
 .firstDiv {
   background-color: #000;
   color: #fff;
-  min-height: 70vh;
+  /* min-height: 70vh; */
+  min-height: 40vh;
   display: grid;
   place-items: center;
   perspective: 500px;
   perspective-origin: 50% calc(50% - 150px);
+  margin-bottom: 60px;
 }
 .scene {
   position: relative;
@@ -38,7 +40,7 @@ body {
   position: absolute;
   transform: translate(-50%, -50%) rotateY(var(--angle)) translateZ(190px);
   width: 50px;
-  height: 220px;
+  height: 120px;
   overflow: hidden;
 }
 .panel::before {
