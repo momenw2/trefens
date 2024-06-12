@@ -186,11 +186,14 @@ body {
   justify-content: center;
 }
 
-.contentFirstBox {
+.contentFirstBox,
+.contentSecondBox,
+.contentThirdBox {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 0 70px;
+  margin-bottom: 40px;
 }
 
 .mainColor {
@@ -199,8 +202,9 @@ body {
 
 .firstBoxImg img {
   width: 500px;
-  height: 700px;
+  height: 600px;
   border-radius: 20% 50%;
+  justify-items: center;
 }
 
 .firstBoxTxt {
@@ -215,4 +219,50 @@ body {
 .firstBoxTxt h4 {
   font-size: 20px;
   font-weight: 500;
+}
+
+.contentSecondBox {
+  background-color: #5d00ff85;
+  height: auto;
+  width: auto;
+}
+
+.secondBoxTxt h2,
+.thirdBoxTxt h2 {
+  font-size: 70px;
+}
+
+.secondBoxTxt p {
+  font-size: 20px;
+  margin-bottom: 16vh;
+  line-height: 5vh;
+}
+
+.thirdBoxGif {
+  width: 40%;
+}
+
+.thirdBoxTxt {
+  width: 60%;
+}
+
+.thirdBoxTxt p {
+  font-size: 20px;
+  line-height: 5vh;
+}
+
+.thirdBoxTxt li {
+  margin-bottom: 3px;
+}
+
+.thirdBoxGif {
+  display: flex;
+  justify-content: center;
+  width: 60%;
+}
+
+.thirdBoxGif img {
+  width: 80%;
+  height: auto;
+  border-radius: 50%;
 }
