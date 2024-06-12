@@ -53,15 +53,52 @@ html {
 .mainColor {
   color: #5d00ff;
 }
-/* button {
-  padding: 10px 20px;
-  font-size: 16px;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.5);
-  border: none;
-  cursor: pointer;
+
+.contentFirstBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0 70px;
+  justify-content: space-between;
+  margin-top: 30px;
 }
 
-button:hover {
-  background-color: rgba(0, 0, 0, 0.7);
-} */
+.firstBoxTxt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.firstBoxTxt h2 {
+  color: #5d00ff;
+  font-size: 50px;
+}
+
+.firstBoxTxt p {
+  font-size: 30px;
+}
+
+.firstBoxTxt a {
+  text-decoration: none;
+  color: white;
+  background-color: #5d00ff;
+  width: 20%;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+}
+
+.firstBoxTxt a:hover {
+  background-color: #4100b3;
+}
+
+.firstBoxImg {
+  display: flex;
+  justify-content: center;
+}
+
+.firstBoxImg img {
+  width: 50vh;
+  height: auto;
+  border-radius: 20px;
+}
