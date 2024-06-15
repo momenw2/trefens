@@ -73,3 +73,21 @@ header {
   color: white;
   border: 1px solid #5d00ff;
 }
+
+.cartIconBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartIconBox a i {
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  color: white;
+  font-size: 34px;
+}
+
+.cartIconBox a i:hover {
+  color: #5d00ff;
+}
