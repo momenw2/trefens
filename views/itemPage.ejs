@@ -5,8 +5,131 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/item.css" />
     <title>Document</title>
+    <style>
+      .quantity-control {
+        display: flex;
+        align-items: center;
+      }
+      .quantity-control button {
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+      }
+      .quantity-control input {
+        width: 50px;
+        text-align: center;
+        font-size: 16px;
+        margin: 0 5px;
+      }
+    </style>
   </head>
   <body>
     <%- include('partials/header.ejs') -%>
+
+    <div class="itemContainer">
+      <div class="itemImg">
+        <div style="width: 500px">
+          <!-- Container for the HTML slideshow -->
+          <div class="imageshow-container">
+            <!-- Individual image slides -->
+            <div class="imageClass fade">
+              <img src="images/items/tshirts/item1.jpeg" style="width: 100%" />
+            </div>
+
+            <div class="imageClass fade">
+              <img src="images/items/tshirts/item2.jpeg" style="width: 100%" />
+            </div>
+
+            <div class="imageClass fade">
+              <img src="images/items/tshirts/item1.jpeg" style="width: 100%" />
+            </div>
+          </div>
+          <br />
+
+          <!-- The dots/circles for navigation -->
+          <div style="text-align: center">
+            <span class="dot" onclick="currentImage(1)"></span>
+            <span class="dot" onclick="currentImage(2)"></span>
+            <span class="dot" onclick="currentImage(3)"></span>
+          </div>
+        </div>
+      </div>
+      <div class="itemData">
+        <h2>Holly Gang</h2>
+        <p>
+          First made in 1988, this is the original heavyweight t-shirt, our
+          signature piece. Defined by a 1.25" cotton rib collar, full cut
+          sleeves, and a relaxed fit. We knit with a tubular body for no
+          uncomfortable side seams in our 8+ ounce 100% cotton jersey. The
+          weight of the fabric is unlike anything else and evident as soon as
+          you take it out of the package. Not just a shirt with superior
+          comfort, but also with incredible durability, allowing the piece to
+          wear in over time without falling apart. Don't just take it from us,
+          many of our customers are still wearing their shirts 10, 20, even 30
+          years later.
+        </p>
+
+        <div class="itemSizes">
+          <h3>Select Size:</h3>
+          <input type="radio" id="sizeS" name="size" value="S" />
+          <label for="sizeS">S</label>
+
+          <input type="radio" id="sizeM" name="size" value="M" />
+          <label for="sizeM">M</label>
+
+          <input type="radio" id="sizeL" name="size" value="L" />
+          <label for="sizeL">L</label>
+        </div>
+
+        <div class="addToCartBox">
+          <button id="addToCartBtn" onclick="addToCart()">Add To Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Function to display the images
+      function currentImage(n) {
+        var i;
+        var images = document.getElementsByClassName("imageClass");
+        var dots = document.getElementsByClassName("dot");
+        for (i = 0; i < images.length; i++) {
+          images[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+        images[n - 1].style.display = "block";
+        dots[n - 1].className += " active";
+      }
+
+      currentImage(1);
+
+      // Function to handle Add To Cart button click
+      function addToCart() {
+        var addToCartBox = document.querySelector(".addToCartBox");
+        addToCartBox.innerHTML = `
+          <div class="quantity-control">
+            <button onclick="decreaseQuantity()">-</button>
+            <input type="number" id="itemQuantity" name="quantity" min="1" value="1" readonly>
+            <button onclick="increaseQuantity()">+</button>
+          </div>
+        `;
+      }
+
+      // Function to increase quantity
+      function increaseQuantity() {
+        var quantityInput = document.getElementById("itemQuantity");
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+      }
+
+      // Function to decrease quantity
+      function decreaseQuantity() {
+        var quantityInput = document.getElementById("itemQuantity");
+        if (quantityInput.value > 1) {
+          quantityInput.value = parseInt(quantityInput.value) - 1;
+        }
+      }
+    </script>
   </body>
 </html>
