@@ -9,6 +9,7 @@ app.get("/", (req, res) => res.render("home"));
 app.get("/About-Us", (req, res) => res.render("aboutUs"));
 app.get("/product", (req, res) => res.render("productPage"));
 app.get("/item", (req, res) => res.render("itemPage"));
+app.get("/checkout", (req, res) => res.render("checkoutPage"));
 
 //Error Handler
 app.use((req, res, next) => {
