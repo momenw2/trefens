@@ -115,12 +115,15 @@ hr {
 
 .confirmButton a {
   text-decoration: none;
-  color: white;
-  background-color: #4604b9;
+  /* color: white; */
+  /* background-color: #4604b9; */
+  border: 2px solid #4604b9;
+  color: black;
   padding: 17px;
   border-radius: 10px;
 }
 
 .confirmButton a:hover {
   background-color: #310182;
+  color: white;
 }
