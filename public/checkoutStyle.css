@@ -10,3 +10,67 @@ body {
   padding: 0;
   color: whitesmoke;
 }
+
+.mainContainer {
+  display: flex;
+  flex-direction: row;
+  padding: 60px;
+  justify-content: space-between;
+}
+
+.itemsContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(32, 32, 32);
+  border-radius: 20px;
+  width: 60%;
+  padding: 20px;
+}
+
+.itemBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: rgb(47, 47, 47);
+  margin-bottom: 20px;
+  border-radius: 20px;
+}
+
+.itemBox img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+}
+
+.checkContainer {
+  display: flex;
+  flex-direction: column;
+  color: rgb(47, 46, 46);
+  background-color: rgb(245, 245, 245);
+  width: 30%;
+  align-self: flex-start;
+}
+
+.checkTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkoutTriangles {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+
+  border-bottom: 5px solid black;
+}
