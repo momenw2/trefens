@@ -16,6 +16,33 @@ body {
   justify-content: space-between;
 }
 
+.dataContainer {
+  display: flex;
+  width: 60%;
+}
+
+.dataContainer form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.dataContainer form label {
+  font-size: 25px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.dataContainer form input {
+  width: 70%;
+  height: auto;
+  padding: 20px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #cac8cd;
+}
 
 .checkContainer {
   display: flex;
