@@ -27,6 +27,10 @@ app.get("/item", (req, res) => res.render("itemPage"));
 app.get("/checkout", (req, res) => res.render("checkoutPage"));
 app.get("/confirmation", (req, res) => res.render("confirmationPage"));
 
+// Product  Router
+const productRoutes = require("./Routes/product.router");
+app.use("/productBCK", productRoutes);
+
 //Error Handler
 app.use((req, res, next) => {
   const err = new Error("Not found");
