@@ -1,9 +1,24 @@
 const express = require("express");
+const mongoose = require("mongoose");
+
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const app = express();
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(express.json());
+
+const PORT = process.env.PORT || 3000;
+
+mongoose.connect(process.env.URI).then(() => {
+  app.listen(PORT, () => {
+    console.log("server started on port " + PORT + "...");
+  });
+
+  console.log("Mongodb connected....");
+});
 
 app.get("/", (req, res) => res.render("home"));
 app.get("/About-Us", (req, res) => res.render("aboutUs"));
@@ -27,8 +42,4 @@ app.use((err, req, res, next) => {
       message: err.message,
     },
   });
-});
-
-app.listen(3000, () => {
-  console.log("server started on port 3000.....");
 });
