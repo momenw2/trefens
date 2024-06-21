@@ -105,6 +105,10 @@ body {
   animation-duration: 1.5s;
 }
 
+.price {
+  margin-left: 10px;
+}
+
 @keyframes fade {
   from {
     opacity: 0.4;
