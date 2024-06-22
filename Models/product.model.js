@@ -10,15 +10,12 @@ const productSchema = new Schema({
       price: Number,
       discount: Number,
       description: String,
-      sizes: [
-        {
-          size: String,
-        },
-      ],
+      sizes: Array,
+      images: Array,
     },
   ],
 });
 
-const product = mongoose.model("country", productSchema);
+const product = mongoose.model("product", productSchema);
 
 module.exports = product;
