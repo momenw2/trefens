@@ -34,7 +34,9 @@
 
             category.categoryData.forEach((item) => {
               const itemElement = document.createElement("a");
-              itemElement.href = "/item";
+              const encodedCategory = encodeURIComponent(category.category);
+              const encodedItemName = encodeURIComponent(item.name);
+              itemElement.href = `/item?category=${encodedCategory}&name=${encodedItemName}`;
               itemElement.innerHTML = `
                 <div class="container">
                   <img src="${item.images[0]}" alt="">
