@@ -150,3 +150,12 @@ body {
   transition-delay: 0.6s;
   opacity: 1;
 }
+
+.categoryTitle {
+  display: flex;
+  padding: 20px;
+}
+
+.categoryTitle h2 {
+  font-size: 40px;
+}
