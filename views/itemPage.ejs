@@ -108,6 +108,7 @@
           input.id = `size${size}`;
           input.name = "size";
           input.value = size;
+          input.onchange = checkCart;
 
           const label = document.createElement("label");
           label.htmlFor = `size${size}`;
@@ -139,20 +140,83 @@
 
       // Function to handle Add To Cart button click
       function addToCart() {
+        var selectedSize = document.querySelector('input[name="size"]:checked');
+        if (!selectedSize) {
+          alert("Please select a size.");
+          return;
+        }
+
+        var itemName = document.getElementById("item-name").textContent;
+        var itemPrice = document.getElementById("item-price").textContent;
+        var itemSize = selectedSize.value;
+
+        var cartItem = {
+          name: itemName,
+          price: itemPrice,
+          size: itemSize,
+          quantity: 1,
+        };
+
+        var existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+        var existingItemIndex = existingCart.findIndex(
+          (item) => item.name === itemName && item.size === itemSize
+        );
+
+        if (existingItemIndex !== -1) {
+          existingCart[existingItemIndex].quantity += 1;
+        } else {
+          existingCart.push(cartItem);
+        }
+
+        localStorage.setItem("cart", JSON.stringify(existingCart));
+
+        console.log("Cart after add:", existingCart);
+
+        updateCartButton();
+      }
+
+      // Function to update the Add To Cart button state based on cart
+      function updateCartButton() {
+        var selectedSize = document.querySelector('input[name="size"]:checked');
+        if (!selectedSize) {
+          return;
+        }
+
+        var itemName = document.getElementById("item-name").textContent;
+        var itemSize = selectedSize.value;
+
+        var existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+        var existingItem = existingCart.find(
+          (item) => item.name === itemName && item.size === itemSize
+        );
+
         var addToCartBox = document.querySelector(".addToCartBox");
-        addToCartBox.innerHTML = `
-        <div class="quantity-control">
-          <button onclick="decreaseQuantity()">-</button>
-          <input type="number" id="itemQuantity" name="quantity" min="1" value="1" readonly>
-          <button onclick="increaseQuantity()">+</button>
-        </div>
-      `;
+
+        if (existingItem) {
+          addToCartBox.innerHTML = `
+            <div class="quantity-control">
+              <button onclick="decreaseQuantity()">-</button>
+              <input type="number" id="itemQuantity" name="quantity" min="1" value="${existingItem.quantity}" readonly>
+              <button onclick="increaseQuantity()">+</button>
+            </div>
+          `;
+        } else {
+          addToCartBox.innerHTML = `
+            <button id="addToCartBtn" onclick="addToCart()">Add To Cart</button>
+          `;
+        }
+      }
+
+      // Function to check cart when size is changed
+      function checkCart() {
+        updateCartButton();
       }
 
       // Function to increase quantity
       function increaseQuantity() {
         var quantityInput = document.getElementById("itemQuantity");
         quantityInput.value = parseInt(quantityInput.value) + 1;
+        updateCart(quantityInput.value);
       }
 
       // Function to decrease quantity
@@ -160,6 +224,26 @@
         var quantityInput = document.getElementById("itemQuantity");
         if (quantityInput.value > 1) {
           quantityInput.value = parseInt(quantityInput.value) - 1;
+          updateCart(quantityInput.value);
+        }
+      }
+
+      // Function to update cart in local storage
+      function updateCart(quantity) {
+        var selectedSize = document.querySelector(
+          'input[name="size"]:checked'
+        ).value;
+        var itemName = document.getElementById("item-name").textContent;
+        var existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        var itemIndex = existingCart.findIndex(
+          (item) => item.name === itemName && item.size === selectedSize
+        );
+
+        if (itemIndex !== -1) {
+          existingCart[itemIndex].quantity = quantity;
+          localStorage.setItem("cart", JSON.stringify(existingCart));
+          console.log("Cart after update:", existingCart);
         }
       }
 
