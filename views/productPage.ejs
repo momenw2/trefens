@@ -15,39 +15,40 @@
       </div> -->
 
       <div class="categoryTitle">
-        <h2>T-Shrits</h2>
+        <!-- <h2>T-Shirts</h2> -->
       </div>
 
-    <div class="card-container">
-      <a href="/item">
-        <div class="container">
-          <img src="images/items/tshirts/item1.jpeg" alt="">
-          <div class="overlay">
-            <div class="items"></div>
-            <div class="items head">
-              <p>Flower Embroidery Hoop Art</p>
-              <hr>
-            </div>
-            <div class="items price">
-              <p class="old">$699</p>
-              <p class="new">$345</p>
-            </div>
-            <div class="items cart">
-              <i class="fa fa-shopping-cart"></i>
-              <span>ADD TO CART</span>
+      <div class="card-container">
+        <!-- <a href="/item">
+          <div class="container">
+            <img src="images/items/tshirts/item1.jpeg" alt="" />
+            <div class="overlay">
+              <div class="items"></div>
+              <div class="items head">
+                <p>Flower Embroidery Hoop Art</p>
+                <hr />
+              </div>
+              <div class="items price">
+                <p class="old">$699</p>
+                <p class="new">$345</p>
+              </div>
+              <div class="items cart">
+                <i class="fa fa-shopping-cart"></i>
+                <span>ADD TO CART</span>
+              </div>
             </div>
           </div>
-        </div>
-      </a>
+        </a> -->
+      </div>
 
-      <a href="/item">
+      <!-- <a href="/item">
         <div class="container">
-          <img src="images/items/tshirts/item2.jpeg" alt="">
+          <img src="images/items/tshirts/item2.jpeg" alt="" />
           <div class="overlay">
             <div class="items"></div>
             <div class="items head">
               <p>Flower Embroidery Hoop Art</p>
-              <hr>
+              <hr />
             </div>
             <div class="items price">
               <p class="old">$699</p>
@@ -59,33 +60,56 @@
             </div>
           </div>
         </div>
-      </a>
-
-      <a href="/item">
-        <div class="container">
-          <img src="images/items/tshirts/item1.jpeg" alt="">
-          <div class="overlay">
-            <div class="items"></div>
-            <div class="items head">
-              <p>Flower Embroidery Hoop Art</p>
-              <hr>
-            </div>
-            <div class="items price">
-              <p class="old">$699</p>
-              <p class="new">$345</p>
-            </div>
-            <div class="items cart">
-              <i class="fa fa-shopping-cart"></i>
-              <span>ADD TO CART</span>
-            </div>
-          </div>
-        </div>
-      </a>
-    
-  
-    
-      
+      </a> -->
     </div>
 
+    <script>
+      const productPageContainer = document.querySelector(
+        ".productPageContainer"
+      );
+
+      fetch("http://localhost:3000/productBCK")
+        .then((res) => res.json())
+        .then((data) => {
+          data.forEach((category) => {
+            const categoryTitle = document.createElement("div");
+            categoryTitle.classList.add("categoryTitle");
+            categoryTitle.innerHTML = `<h2>${category.category}</h2>`;
+            productPageContainer.appendChild(categoryTitle);
+
+            const cardContainer = document.createElement("div");
+            cardContainer.classList.add("card-container");
+            productPageContainer.appendChild(cardContainer);
+
+            category.categoryData.forEach((item) => {
+              const itemElement = document.createElement("a");
+              itemElement.href = "/item";
+              itemElement.innerHTML = `
+                <div class="container">
+                  <img src="${item.images[0]}" alt="">
+                  <div class="overlay">
+                    <div class="items"></div>
+                    <div class="items head">
+                      <p>${item.name}</p>
+                      <hr>
+                    </div>
+                    <div class="items price">
+                      <p class="old">${item.price}</p>
+                      <p class="new">${item.discount}</p>
+                    </div>
+                    <div class="items cart">
+                      <i class="fa fa-shopping-cart"></i>
+                      <span>ADD TO CART</span>
+                    </div>
+                  </div>
+                </div>`;
+              cardContainer.appendChild(itemElement);
+            });
+          });
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    </script>
   </body>
 </html>
