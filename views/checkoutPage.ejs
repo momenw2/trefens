@@ -4,14 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/checkoutStyle.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <title>Document</title>
     <style>
-
+      .itemBox {
+        display: flex;
+        align-items: center;
+        /* border-bottom: 1px solid #ddd; */
+        padding: 10px 0;
+      }
+      .itemBox img {
+        width: 100px;
+        height: 100px;
+        margin-right: 10px;
+      }
+      .itemBox h4,
+      .itemBox p,
+      .itemBox .quantity-control,
+      .itemBox .fa-trash-o {
+        flex: 1;
+        text-align: center;
+      }
+      .quantity-control {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .quantity-control button {
+        margin: 0 5px;
+      }
     </style>
   </head>
   <body>
@@ -43,6 +67,14 @@
         cartItems.forEach((item, index) => {
           var itemBox = document.createElement("div");
           itemBox.className = "itemBox";
+
+          // Ensure price and quantity are numbers
+          var price = parseFloat(item.price);
+          var quantity = parseInt(item.quantity, 10);
+
+          // Calculate the total price
+          var totalPrice = price * quantity;
+
           itemBox.innerHTML = `
             <img src="images/items/tshirts/item1.jpeg" alt="" />
             <h4>${item.name}</h4>
@@ -52,8 +84,8 @@
               <input type="number" value="${item.quantity}" readonly>
               <button onclick="updateQuantity(${index}, 1)">+</button>
             </div>
-            <p>${item.price}</p>
-            <i class="fa fa-trash-o" onclick="deleteItem(${index})" style="font-size: 36px"></i>
+            <p>$${totalPrice.toFixed(2)}</p>
+            <i class="fa fa-trash-o" onclick="deleteItem(${index})" style="font-size: 30px"></i>
           `;
           itemsContainer.appendChild(itemBox);
         });
