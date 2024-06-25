@@ -5,120 +5,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/checkoutStyle.css" />
     <title>Document</title>
+    <style>
+      .itemBox {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        padding: 10px;
+        /* border: 1px solid #ddd; */
+      }
+      .quantity-control {
+        display: flex;
+        align-items: center;
+      }
+      .quantity-control button {
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+      .quantity-control input {
+        width: 50px;
+        text-align: center;
+        font-size: 16px;
+        margin: 0 5px;
+      }
+      .delete-button {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
     <%- include('partials/header.ejs') -%>
 
     <div class="mainContainer">
-      <div class="itemsContainer">
-        <div class="itemBox">
-          <img src="images/items/tshirts/item1.jpeg" alt="" />
-          <h4>Holly Rap</h4>
-          <p>S</p>
-          <p>1</p>
-          <p>1200 EGP</p>
-        </div>
-        <div class="itemBox">
-          <img src="images/items/tshirts/item1.jpeg" alt="" />
-          <h4>Holly Rap</h4>
-          <p>M</p>
-          <p>1</p>
-          <p>1200 EGP</p>
-        </div>
-        <div class="itemBox">
-          <img src="images/items/tshirts/item1.jpeg" alt="" />
-          <h4>Holly Rap</h4>
-          <p>S</p>
-          <p>1</p>
-          <p>1200 EGP</p>
-        </div>
-        <div class="itemBox">
-          <img src="images/items/tshirts/item1.jpeg" alt="" />
-          <h4>Holly Rap</h4>
-          <p>L</p>
-          <p>1</p>
-          <p>1200 EGP</p>
-        </div>
+      <div class="itemsContainer" id="itemsContainer">
+        <!-- Items will be dynamically inserted here -->
       </div>
-      <div class="checkContainer">
-        <div class="checkTitle">
-          <h2>CHECKOUT</h2>
-        </div>
 
-        <div class="checkoutItemContainer">
-          <div class="checkoutItemBox">
-            <p>Holly Rap</p>
-            <p>M</p>
-            <p>x1</p>
-            <p>1200 EGP</p>
-          </div>
-
-          <div class="checkoutItemBox">
-            <p>Holly Rap</p>
-            <p>L</p>
-            <p>x2</p>
-            <p>2400 EGP</p>
-          </div>
-
-          <div class="checkoutItemBox">
-            <p>Holly Rap</p>
-            <p>S</p>
-            <p>x1</p>
-            <p>1200 EGP</p>
-          </div>
-        </div>
-
-        <hr />
-
-        <div class="totalContainer">
-          <h4>TOTAL: 4800 EGP</h4>
-        </div>
-
-        <div class="confirmButton">
-          <a href="/confirmation">Checkout</a>
-        </div>
-        <div class="checkoutTriangles">
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-          <div class="arrow-up"></div>
-        </div>
+      <div class="confirmButton">
+        <a href="/confirmation">Checkout</a>
       </div>
     </div>
+
+    <script>
+      // Function to fetch items from local storage and display them
+      function displayCartItems() {
+        var itemsContainer = document.getElementById("itemsContainer");
+        var cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+        if (cartItems.length === 0) {
+          itemsContainer.innerHTML = "<p>Your cart is empty</p>";
+          return;
+        }
+
+        itemsContainer.innerHTML = ""; // Clear the container before adding items
+
+        cartItems.forEach((item, index) => {
+          var itemBox = document.createElement("div");
+          itemBox.className = "itemBox";
+          itemBox.innerHTML = `
+            <img src="images/items/tshirts/item1.jpeg" alt="" />
+            <h4>${item.name}</h4>
+            <p>${item.size}</p>
+            <div class="quantity-control">
+              <button onclick="updateQuantity(${index}, -1)">-</button>
+              <input type="number" value="${item.quantity}" readonly>
+              <button onclick="updateQuantity(${index}, 1)">+</button>
+            </div>
+            <p>${item.price}</p>
+            <button class="delete-button" onclick="deleteItem(${index})">Delete</button>
+          `;
+          itemsContainer.appendChild(itemBox);
+        });
+      }
+
+      // Function to update the quantity of an item in the cart
+      function updateQuantity(index, change) {
+        var cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+        if (cartItems[index]) {
+          cartItems[index].quantity += change;
+          if (cartItems[index].quantity < 1) {
+            cartItems[index].quantity = 1;
+          }
+          localStorage.setItem("cart", JSON.stringify(cartItems));
+          displayCartItems();
+        }
+      }
+
+      // Function to delete an item from the cart
+      function deleteItem(index) {
+        var cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+        if (cartItems[index]) {
+          cartItems.splice(index, 1);
+          localStorage.setItem("cart", JSON.stringify(cartItems));
+          displayCartItems();
+        }
+      }
+
+      // Call the function to display cart items on page load
+      displayCartItems();
+    </script>
   </body>
 </html>

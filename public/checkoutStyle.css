@@ -11,7 +11,7 @@ body {
 
 .mainContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   padding: 60px;
   justify-content: space-between;
 }
@@ -21,7 +21,7 @@ body {
   flex-direction: column;
   background-color: rgb(32, 32, 32);
   border-radius: 20px;
-  width: 60%;
+  width: 90%;
   padding: 20px;
 }
 
