@@ -127,3 +127,12 @@ hr {
   background-color: #310182;
   color: white;
 }
+
+i {
+  cursor: pointer;
+  padding: 10px;
+}
+
+i:hover {
+  color: red;
+}
