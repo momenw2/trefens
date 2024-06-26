@@ -56,7 +56,7 @@
               <input type="number" value="${item.quantity}" readonly>
               <button onclick="updateQuantity(${index}, 1)">+</button>
             </div>
-            <p>$${totalPrice.toFixed(2)}</p>
+            <p>${totalPrice.toFixed(2)} EGP</p>
             <i class="fa fa-trash-o" onclick="deleteItem(${index})" style="font-size: 30px"></i>
           `;
           itemsContainer.appendChild(itemBox);
