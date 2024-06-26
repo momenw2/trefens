@@ -28,7 +28,7 @@ body {
 }
 
 .dataContainer form label {
-  font-size: 25px;
+  font-size: 17px;
   margin-bottom: 10px;
   font-weight: 500;
 }
@@ -36,12 +36,17 @@ body {
 .dataContainer form input {
   width: 70%;
   height: auto;
-  padding: 20px;
+  padding: 17px;
   margin-bottom: 30px;
-  font-size: 20px;
+  font-size: 17px;
   border: none;
   border-radius: 10px;
-  background-color: #cac8cd;
+  background-color: #383838;
+}
+
+.dataContainer form input::placeholder,
+.dataContainer form input:focus {
+  color: white;
 }
 
 .checkContainer {
