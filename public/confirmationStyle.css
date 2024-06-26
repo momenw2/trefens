@@ -134,3 +134,20 @@ hr {
   background-color: #310182;
   color: white;
 }
+
+.checkoutItemBox {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+.checkoutItemBox p {
+  flex: 1;
+  text-align: center;
+}
+.totalContainer {
+  text-align: right;
+  /* padding: 10px 0; */
+  font-size: 18px;
+  font-weight: bold;
+}
