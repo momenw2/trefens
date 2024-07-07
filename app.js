@@ -27,6 +27,7 @@ app.get("/item", (req, res) => res.render("itemPage"));
 app.get("/checkout", (req, res) => res.render("checkoutPage"));
 app.get("/confirmation", (req, res) => res.render("confirmationPage"));
 app.get("/AdminDB", (req, res) => res.render("adminPage"));
+app.get("/AdminOD", (req, res) => res.render("adminOrderDetails"));
 
 // Product Router
 const productRoutes = require("./Routes/product.router");
