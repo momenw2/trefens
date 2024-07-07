@@ -10,7 +10,7 @@
     <%- include('partials/header.ejs') -%>
 
     <div class="mainContainer">
-      <a href="#">
+      <!-- <a href="#">
         <div class="orderBox">
           <p>Momen</p>
           <p>momen@test.com</p>
@@ -44,13 +44,25 @@
           <p>Giza</p>
           <p>pendding..</p>
         </div>
-      </a>
+      </a> -->
     </div>
 
     <script>
+      const mainContainer = document.querySelector(".mainContainer");
       fetch("http://localhost:3000/orderBCK")
-        .then()
-        .then()
+        .then((res) => res.json())
+        .then((data) => {
+          data.forEach((order) => {
+            mainContainer.innerHTML += `<a href="#">
+        <div class="orderBox">
+          <p>${order.name}</p>
+          <p>${order.email}</p>
+          <p>${order.city}</p>
+          <p>${order.orderProgress}</p>
+        </div>
+      </a>`;
+          });
+        })
         .catch((error) => {
           console.error("Error:", error);
         });
