@@ -3,9 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/adminPageStyle.css" />
     <title>Document</title>
   </head>
   <body>
     <%- include('partials/header.ejs') -%>
+
+    <div class="mainContainer">
+      <a href="#">
+        <div class="orderBox">
+          <p>Momen</p>
+          <p>momen@test.com</p>
+          <p>Giza</p>
+          <p>pendding..</p>
+        </div>
+      </a>
+
+      <a href="#">
+        <div class="orderBox">
+          <p>Momen</p>
+          <p>momen@test.com</p>
+          <p>Giza</p>
+          <p>pendding..</p>
+        </div>
+      </a>
+
+      <a href="#">
+        <div class="orderBox">
+          <p>Momen</p>
+          <p>momen@test.com</p>
+          <p>Giza</p>
+          <p>pendding..</p>
+        </div>
+      </a>
+
+      <a href="#">
+        <div class="orderBox">
+          <p>Momen</p>
+          <p>momen@test.com</p>
+          <p>Giza</p>
+          <p>pendding..</p>
+        </div>
+      </a>
+    </div>
+
+    <script>
+      fetch("http://localhost:3000/orderBCK")
+        .then()
+        .then()
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    </script>
   </body>
 </html>
