@@ -15,11 +15,10 @@ router.get("/", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const order = new Order(req.body);
-    const result = await order.save();
-    res.send(result);
+    await order.save();
+    res.status(201).json(order);
   } catch (error) {
-    console.log(error.message);
-    res.status(500).send("Server Error");
+    res.status(500).json({ error: "Failed to create order" });
   }
 });
 
