@@ -36,4 +36,23 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+// New route to update order progress
+router.put("/:id", async (req, res) => {
+  try {
+    const { orderProgress } = req.body;
+    const updatedOrder = await Order.findByIdAndUpdate(
+      req.params.id,
+      { orderProgress },
+      { new: true }
+    );
+    if (!updatedOrder) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+    res.json(updatedOrder);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ error: "Failed to update order progress" });
+  }
+});
+
 module.exports = router;

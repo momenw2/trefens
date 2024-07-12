@@ -27,6 +27,24 @@
       const orderId = getUrlParameter("id");
       const orderDetailsContainer = document.querySelector(".orderDetails");
 
+      function updateOrderProgress(newProgress) {
+        fetch(`http://localhost:3000/orderBCK/${orderId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ orderProgress: newProgress }),
+        })
+          .then((response) => response.json())
+          .then((updatedOrder) => {
+            document.getElementById("orderProgressValue").textContent =
+              updatedOrder.orderProgress;
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+
       fetch(`http://localhost:3000/orderBCK/${orderId}`)
         .then((res) => res.json())
         .then((order) => {
@@ -53,7 +71,27 @@
                 .join("")}
             </ul>
             <p><strong>Total Order Price:</strong> ${order.totalOrderPrice}</p>
-            <p><strong>Order Progress:</strong> ${order.orderProgress}</p>
+            <p><strong>Order Progress:</strong> <span id="orderProgressValue">${
+              order.orderProgress
+            }</span></p>
+            <label for="orderProgress">Change Order Progress:</label>
+            <select id="orderProgress" onchange="updateOrderProgress(this.value)">
+              <option value="Pending" ${
+                order.orderProgress === "Pending" ? "selected" : ""
+              }>Pending</option>
+              <option value="Collecting" ${
+                order.orderProgress === "Collecting" ? "selected" : ""
+              }>Collecting</option>
+              <option value="Collected" ${
+                order.orderProgress === "Collected" ? "selected" : ""
+              }>Collected</option>
+              <option value="Delivered" ${
+                order.orderProgress === "Delivered" ? "selected" : ""
+              }>Delivered</option>
+              <option value="Done" ${
+                order.orderProgress === "Done" ? "selected" : ""
+              }>Done</option>
+            </select>
           `;
           orderDetailsContainer.innerHTML = orderHtml;
         })
