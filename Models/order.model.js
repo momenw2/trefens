@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const orderSchema = new Schema({
   name: String,
   email: String,
-  country: String,
+  // country: String,
   city: String,
   address: String,
   phoneNumber: String,
