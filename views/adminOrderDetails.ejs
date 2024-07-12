@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/adminPageStyle.css" />
+    <title>Order Details</title>
+  </head>
+  <body>
+    <%- include('partials/header.ejs') -%>
+
+    <div class="orderDetails">
+      <!-- Order details will be dynamically inserted here -->
+    </div>
+
+    <script>
+      // Function to get the URL parameter
+      function getUrlParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+        var results = regex.exec(location.search);
+        return results === null
+          ? ""
+          : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+
+      const orderId = getUrlParameter("id");
+      const orderDetailsContainer = document.querySelector(".orderDetails");
+
+      fetch(`http://localhost:3000/orderBCK/${orderId}`)
+        .then((res) => res.json())
+        .then((order) => {
+          const orderHtml = `
+            <h2>Order Details</h2>
+            <p><strong>Name:</strong> ${order.name}</p>
+            <p><strong>Email:</strong> ${order.email}</p>
+            <p><strong>Country:</strong> ${order.country}</p>
+            <p><strong>City:</strong> ${order.city}</p>
+            <p><strong>Address:</strong> ${order.address}</p>
+            <p><strong>Phone Number:</strong> ${order.phoneNumber}</p>
+            <h3>Items:</h3>
+            <ul>
+              ${order.items
+                .map(
+                  (item) => `
+                <li>
+                  <p><strong>Item Name:</strong> ${item.itemName}</p>
+                  <p><strong>Item Size:</strong> ${item.itemSize}</p>
+                  <p><strong>Item Quantity:</strong> ${item.itemQuantity}</p>
+                  <p><strong>Item Price:</strong> ${item.itemPrice}</p>
+                </li>
+              `
+                )
+                .join("")}
+            </ul>
+            <p><strong>Total Order Price:</strong> ${order.totalOrderPrice}</p>
+            <p><strong>Order Progress:</strong> ${order.orderProgress}</p>
+          `;
+          orderDetailsContainer.innerHTML = orderHtml;
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    </script>
+  </body>
+</html>

@@ -10,41 +10,7 @@
     <%- include('partials/header.ejs') -%>
 
     <div class="mainContainer">
-      <!-- <a href="#">
-        <div class="orderBox">
-          <p>Momen</p>
-          <p>momen@test.com</p>
-          <p>Giza</p>
-          <p>pendding..</p>
-        </div>
-      </a>
-
-      <a href="#">
-        <div class="orderBox">
-          <p>Momen</p>
-          <p>momen@test.com</p>
-          <p>Giza</p>
-          <p>pendding..</p>
-        </div>
-      </a>
-
-      <a href="#">
-        <div class="orderBox">
-          <p>Momen</p>
-          <p>momen@test.com</p>
-          <p>Giza</p>
-          <p>pendding..</p>
-        </div>
-      </a>
-
-      <a href="#">
-        <div class="orderBox">
-          <p>Momen</p>
-          <p>momen@test.com</p>
-          <p>Giza</p>
-          <p>pendding..</p>
-        </div>
-      </a> -->
+      <!-- Order cards will be dynamically inserted here -->
     </div>
 
     <script>
@@ -53,14 +19,14 @@
         .then((res) => res.json())
         .then((data) => {
           data.forEach((order) => {
-            mainContainer.innerHTML += `<a href="#">
-        <div class="orderBox">
-          <p>${order.name}</p>
-          <p>${order.email}</p>
-          <p>${order.city}</p>
-          <p>${order.orderProgress}</p>
-        </div>
-      </a>`;
+            mainContainer.innerHTML += `<a href="/AdminOD?id=${order._id}">
+            <div class="orderBox">
+              <p>${order.name}</p>
+              <p>${order.email}</p>
+              <p>${order.city}</p>
+              <p>${order.orderProgress}</p>
+            </div>
+          </a>`;
           });
         })
         .catch((error) => {

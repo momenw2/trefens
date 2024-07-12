@@ -11,6 +11,20 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+// Route to get a specific order by ID
+router.get("/:id", async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id);
+    if (!order) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+    res.json(order);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ error: "Failed to fetch order" });
+  }
+});
+
 // Add a new topic
 router.post("/", async (req, res, next) => {
   try {
