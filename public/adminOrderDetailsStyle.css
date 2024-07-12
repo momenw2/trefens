@@ -26,3 +26,19 @@ h2,
 h3 {
   font-size: 30px;
 }
+
+select {
+  width: 20%;
+  height: 10%;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: rgb(46, 46, 46);
+  color: white;
+}
+
+.changetxt {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

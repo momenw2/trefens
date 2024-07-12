@@ -74,7 +74,7 @@
             <p><strong>Order Progress:</strong> <span id="orderProgressValue">${
               order.orderProgress
             }</span></p>
-            <label for="orderProgress">Change Order Progress:</label>
+            <label class="changetxt" for="orderProgress">Change Order Progress:</label>
             <select id="orderProgress" onchange="updateOrderProgress(this.value)">
               <option value="Pending" ${
                 order.orderProgress === "Pending" ? "selected" : ""
