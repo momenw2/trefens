@@ -142,6 +142,21 @@
           dotsContainer.appendChild(dot);
         });
 
+        const sizesContainer = document.getElementById("item-sizes");
+        data.sizes.forEach((size) => {
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.id = `size${size}`;
+          input.name = "size";
+          input.value = size;
+          input.onchange = checkCart;
+          const label = document.createElement("label");
+          label.htmlFor = `size${size}`;
+          label.textContent = size;
+          sizesContainer.appendChild(input);
+          sizesContainer.appendChild(label);
+        });
+
         currentSlide(1); // Display the first slide initially
       }
 
