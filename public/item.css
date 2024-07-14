@@ -136,3 +136,35 @@ body {
 .dot:hover {
   background-color: #717171;
 }
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgb(74, 74, 74);
+}
+
+.quantity-control button {
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.quantity-control button:hover {
+  color: rgb(176, 175, 175);
+}
+.quantity-control input {
+  width: 50px;
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  margin: 0 5px;
+  border: none;
+  background: none;
+}
