@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Size Chart</title>
+    <link rel="stylesheet" href="sizeChartStyle.css" />
+  </head>
+  <body>
+    <%- include('partials/header.ejs') -%>
+
+    <div class="sizeChartcontainer">
+      <h1>Size Chart</h1>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Length</th>
+            <th>Width</th>
+            <th>Sleeves</th>
+            <th>Shoulders</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>XS</td>
+            <td>64</td>
+            <td>52</td>
+            <td>22</td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>S</td>
+            <td>68</td>
+            <td>54</td>
+            <td>23</td>
+            <td>15.5</td>
+          </tr>
+          <tr>
+            <td>M</td>
+            <td>70</td>
+            <td>56</td>
+            <td>24</td>
+            <td>16</td>
+          </tr>
+          <tr>
+            <td>L</td>
+            <td>72</td>
+            <td>58</td>
+            <td>24</td>
+            <td>16.5</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note">All sizes are in centimeters</p>
+    </div>
+    <%- include('partials/footer.ejs') -%>
+  </body>
+</html>
