@@ -57,7 +57,7 @@
             <p>${item.size}</p>
             <div class="quantity-control">
               <button onclick="updateQuantity(${index}, -1)">-</button>
-              <input type="number" value="${item.quantity}" readonly>
+              <input type="number" value="${quantity}" readonly>
               <button onclick="updateQuantity(${index}, 1)">+</button>
             </div>
             <p>${totalPrice.toFixed(2)} EGP</p>
@@ -71,10 +71,11 @@
       function updateQuantity(index, change) {
         var cartItems = JSON.parse(localStorage.getItem("cart")) || [];
         if (cartItems[index]) {
-          cartItems[index].quantity += change;
-          if (cartItems[index].quantity < 1) {
-            cartItems[index].quantity = 1;
+          var newQuantity = cartItems[index].quantity + change;
+          if (newQuantity < 1) {
+            newQuantity = 1;
           }
+          cartItems[index].quantity = newQuantity;
           localStorage.setItem("cart", JSON.stringify(cartItems));
           displayCartItems();
         }
