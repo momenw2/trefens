@@ -19,13 +19,22 @@
     <%- include('partials/footer.ejs') -%>
 
     <script>
-      const productPageContainer = document.querySelector(
-        ".productPageContainer"
-      );
+      document.addEventListener("DOMContentLoaded", () => {
+        const productPageContainer = document.querySelector(
+          ".productPageContainer"
+        );
 
-      fetch("http://localhost:3000/productBCK")
-        .then((res) => res.json())
-        .then((data) => {
+        async function fetchData() {
+          try {
+            const response = await fetch("http://localhost:3000/productBCK");
+            const data = await response.json();
+            renderData(data);
+          } catch (error) {
+            console.error("Error:", error);
+          }
+        }
+
+        function renderData(data) {
           data.forEach((category) => {
             const categoryTitle = document.createElement("div");
             categoryTitle.classList.add("categoryTitle");
@@ -63,10 +72,10 @@
               cardContainer.appendChild(itemElement);
             });
           });
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+        }
+
+        fetchData();
+      });
     </script>
   </body>
 </html>
