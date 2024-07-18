@@ -88,3 +88,17 @@ header {
 .cartIconBox a i:hover {
   color: #5d00ff;
 }
+
+#cartQuantity {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: white;
+  background-color: rgba(71, 0, 152, 0.677);
+  border: 2px solid rgba(71, 0, 152, 0.416);
+  border-radius: 50%;
+  padding: 5px;
+  min-width: 20px;
+  text-align: center;
+  font-size: 12px;
+}
