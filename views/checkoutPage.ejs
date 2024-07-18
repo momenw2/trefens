@@ -18,7 +18,7 @@
         <!-- Items will be dynamically inserted here -->
       </div>
 
-      <div class="confirmButton">
+      <div class="confirmButton" id="checkoutButton">
         <a href="/confirmation">Checkout</a>
       </div>
     </div>
@@ -27,11 +27,15 @@
       // Function to fetch items from local storage and display them
       function displayCartItems() {
         var itemsContainer = document.getElementById("itemsContainer");
+        var checkoutButton = document.getElementById("checkoutButton");
         var cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
         if (cartItems.length === 0) {
           itemsContainer.innerHTML = "<p>Your cart is empty</p>";
+          checkoutButton.style.display = "none";
           return;
+        } else {
+          checkoutButton.style.display = "block";
         }
 
         itemsContainer.innerHTML = ""; // Clear the container before adding items
