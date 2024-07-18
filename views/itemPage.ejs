@@ -87,6 +87,8 @@
     <%- include('partials/footer.ejs') -%>
 
     <script>
+      let firstImagePath = "";
+
       // Function to fetch and display item data
       async function fetchItemData() {
         const urlParams = new URLSearchParams(window.location.search);
@@ -122,6 +124,10 @@
         data.images.forEach((image, index) => {
           const slideElement = document.createElement("div");
           slideElement.className = "slideClass fade";
+
+          if (index === 0) {
+            firstImagePath = image; // Store the first image path
+          }
 
           if (index < 2) {
             // Display first 2 images as images
@@ -204,6 +210,7 @@
           price: itemPrice,
           size: itemSize,
           quantity: 1,
+          image: firstImagePath, // Add the first image path to the cart item
         };
 
         var existingCart = JSON.parse(localStorage.getItem("cart")) || [];

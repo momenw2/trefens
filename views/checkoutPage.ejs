@@ -52,7 +52,7 @@
           var totalPrice = price * quantity;
 
           itemBox.innerHTML = `
-            <img src="images/items/tshirts/item1.jpeg" alt="" />
+            <img src="${item.image}" alt="${item.name}" />
             <h4>${item.name}</h4>
             <p>${item.size}</p>
             <div class="quantity-control">
@@ -71,7 +71,7 @@
       function updateQuantity(index, change) {
         var cartItems = JSON.parse(localStorage.getItem("cart")) || [];
         if (cartItems[index]) {
-          var newQuantity = cartItems[index].quantity + change;
+          var newQuantity = parseInt(cartItems[index].quantity) + change;
           if (newQuantity < 1) {
             newQuantity = 1;
           }
