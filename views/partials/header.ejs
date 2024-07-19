@@ -3,19 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/header.css" />
+    <link rel="stylesheet" href="header.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
     <title>Document</title>
-    <style>
-      /* Add your custom CSS styles here */
-      /* Ensure to include the font import if needed */
-    </style>
   </head>
   <body>
     <header>
+      <div class="menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
       <div class="logo">
         <a href="/"><img src="/Logo4.png" alt="Logo" /></a>
       </div>
@@ -28,9 +27,20 @@
       </div>
       <div class="cartIconBox">
         <a href="/checkout"><i class="fas fa-shopping-bag"></i></a>
-        <span class="cart-quantity" id="cartQuantity">0</span>
+        <span class="cart-quantity" id="cartQuantityH">0</span>
       </div>
     </header>
+
+    <div class="mobile-menu">
+      <div class="close-btn">
+        <i class="fas fa-times"></i>
+      </div>
+      <div class="pages">
+        <a href="/About-Us">ABOUT US</a>
+        <a href="/product">PRODUCTS</a>
+        <a href="/sizechart">SIZE CHART</a>
+      </div>
+    </div>
 
     <script>
       // Function to update the cart quantity display
@@ -43,7 +53,7 @@
         }, 0);
 
         // Update the cart quantity display
-        document.getElementById("cartQuantity").textContent =
+        document.getElementById("cartQuantityH").textContent =
           totalQuantity.toString();
       }
 
@@ -52,6 +62,19 @@
 
       // Add an event listener to update cart quantity when storage changes
       window.addEventListener("storage", updateCartQuantity);
+
+      // Mobile menu functionality
+      const menuBtn = document.querySelector(".menu-btn");
+      const closeBtn = document.querySelector(".close-btn");
+      const mobileMenu = document.querySelector(".mobile-menu");
+
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.add("active");
+      });
+
+      closeBtn.addEventListener("click", () => {
+        mobileMenu.classList.remove("active");
+      });
     </script>
   </body>
 </html>
