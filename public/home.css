@@ -3,36 +3,32 @@
 * {
   font-family: "Poppins", sans-serif;
 }
+
+/* General Reset and Basic Styles */
+html,
 body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal overflow */
   background-color: black;
-  margin: 0;
-  padding: 0;
   color: whitesmoke;
-}
-body,
-html {
-  margin: 0;
-  padding: 0;
 }
 
 .headerContainer {
   position: relative;
-  height: 100vh; /* You can adjust this to fit your needs */
+  height: 100vh; /* Full viewport height */
   width: 100%;
-  overflow: hidden;
+  overflow: hidden; /* Ensure no overflow */
 }
 
 #myVideo {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  z-index: -1;
-  transform: translate(-50%, -50%);
-  background-size: cover;
+  top: 0; /* Align to the top */
+  left: 0; /* Align to the left */
+  width: 100%; /* Full width of the container */
+  height: 100%; /* Full height of the container */
+  object-fit: cover; /* Cover the container while maintaining aspect ratio */
+  /* Remove border */
 }
 
 .headerTxt {
@@ -42,7 +38,7 @@ html {
   transform: translate(-50%, -50%);
   color: white;
   text-align: center;
-  z-index: 1;
+  z-index: 1; /* On top of video */
   width: 100%;
 }
 
@@ -54,12 +50,12 @@ html {
   color: #5d00ff;
 }
 
+/* Additional Styles */
 .contentFirstBox {
   display: flex;
   flex-direction: row;
   justify-content: center;
   padding: 0 70px;
-  justify-content: space-between;
   margin-top: 30px;
 }
 
@@ -136,4 +132,146 @@ html {
 
 .secondBoxTxt a:hover {
   background-color: #1f0055;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .contentFirstBox {
+    padding: 0 40px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .firstBoxTxt {
+    text-align: center;
+  }
+
+  .firstBoxTxt h2 {
+    font-size: 40px;
+  }
+
+  .firstBoxTxt p {
+    font-size: 24px;
+  }
+
+  .firstBoxTxt a {
+    width: auto;
+    padding: 10px 20px;
+  }
+
+  .firstBoxImg img {
+    width: 40vh;
+  }
+
+  .secondBoxTxt h2 {
+    font-size: 50px;
+  }
+
+  .secondBoxTxt p {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 992px) {
+  .headerTxt h1 {
+    font-size: 40px;
+  }
+
+  .contentFirstBox {
+    padding: 0 20px;
+  }
+
+  .firstBoxTxt h2 {
+    font-size: 30px;
+  }
+
+  .firstBoxTxt p {
+    font-size: 20px;
+  }
+
+  .firstBoxImg img {
+    width: 30vh;
+  }
+
+  .secondBoxTxt h2 {
+    font-size: 40px;
+  }
+
+  .secondBoxTxt p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .headerTxt h1 {
+    font-size: 30px;
+  }
+
+  .firstBoxTxt h2 {
+    font-size: 25px;
+  }
+
+  .firstBoxTxt p {
+    font-size: 18px;
+  }
+
+  .firstBoxTxt a {
+    width: auto;
+    padding: 10px;
+  }
+
+  .firstBoxImg img {
+    width: 25vh;
+  }
+
+  .secondBoxTxt h2 {
+    font-size: 35px;
+  }
+
+  .secondBoxTxt p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .headerTxt h1 {
+    font-size: 24px;
+  }
+
+  .headerTxt h3 {
+    font-size: 18px;
+  }
+
+  .headerTxt p {
+    font-size: 16px;
+  }
+
+  .firstBoxTxt h2 {
+    font-size: 20px;
+  }
+
+  .firstBoxTxt p {
+    font-size: 16px;
+  }
+
+  .firstBoxTxt a {
+    margin-bottom: 20px;
+  }
+
+  .firstBoxImg img {
+    width: 20vh;
+  }
+
+  .secondBoxTxt h2 {
+    font-size: 30px;
+  }
+
+  .secondBoxTxt p {
+    font-size: 12px;
+  }
+
+  .secondBoxTxt a {
+    padding: 10px;
+    font-size: 14px;
+  }
 }
