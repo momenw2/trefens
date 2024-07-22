@@ -75,7 +75,7 @@
         </div>
 
         <div class="confirmButton">
-          <a href="#" onclick="confirmOrder()">Confirm Order</a>
+          <a href="#" id="confirmOrderButton">Confirm Order</a>
         </div>
         <div class="checkoutTriangles">
           <div class="arrow-up"></div>
@@ -119,118 +119,141 @@
           <div class="arrow-up"></div>
           <div class="arrow-up"></div>
           <div class="arrow-up"></div>
+          <!-- Additional arrow-up divs if necessary -->
         </div>
       </div>
     </div>
 
     <script>
-      // Function to fetch cart items from local storage and display them
-      function displayCheckoutItems() {
-        var checkoutItemContainer = document.getElementById(
-          "checkoutItemContainer"
-        );
-        var totalContainer = document.getElementById("totalContainer");
-        var cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-        var totalAmount = 0;
+      document.addEventListener("DOMContentLoaded", () => {
+        // Function to fetch cart items from local storage and display them
+        function displayCheckoutItems() {
+          var checkoutItemContainer = document.getElementById(
+            "checkoutItemContainer"
+          );
+          var totalContainer = document.getElementById("totalContainer");
+          var cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+          var totalAmount = 0;
 
-        if (cartItems.length === 0) {
-          checkoutItemContainer.innerHTML = "<p>Your cart is empty</p>";
-          totalContainer.innerHTML = "";
-          return;
+          if (cartItems.length === 0) {
+            checkoutItemContainer.innerHTML = "<p>Your cart is empty</p>";
+            totalContainer.innerHTML = "";
+            return;
+          }
+
+          checkoutItemContainer.innerHTML = ""; // Clear the container before adding items
+
+          cartItems.forEach((item) => {
+            var price = parseFloat(item.price);
+            var quantity = parseInt(item.quantity, 10);
+            var totalPrice = price * quantity;
+            totalAmount += totalPrice;
+
+            var checkoutItemBox = document.createElement("div");
+            checkoutItemBox.className = "checkoutItemBox";
+
+            checkoutItemBox.innerHTML = `
+              <p>${item.name}</p>
+              <p>${item.size}</p>
+              <p>x${quantity}</p>
+              <p>${totalPrice.toFixed(2)} EGP</p>
+            `;
+            checkoutItemContainer.appendChild(checkoutItemBox);
+          });
+
+          totalContainer.innerHTML = `<h4>TOTAL: ${totalAmount.toFixed(
+            2
+          )} EGP</h4>`;
         }
 
-        checkoutItemContainer.innerHTML = ""; // Clear the container before adding items
+        // Function to validate the form and confirm the order
+        function confirmOrder(event) {
+          event.preventDefault(); // Prevent default form submission
 
-        cartItems.forEach((item) => {
-          var price = parseFloat(item.price);
-          var quantity = parseInt(item.quantity, 10);
-          var totalPrice = price * quantity;
-          totalAmount += totalPrice;
+          // Gather form data
+          var form = document.getElementById("orderForm");
+          var isValid = true;
 
-          var checkoutItemBox = document.createElement("div");
-          checkoutItemBox.className = "checkoutItemBox";
-
-          checkoutItemBox.innerHTML = `
-            <p>${item.name}</p>
-            <p>${item.size}</p>
-            <p>x${quantity}</p>
-            <p>${totalPrice.toFixed(2)} EGP</p>
-          `;
-          checkoutItemContainer.appendChild(checkoutItemBox);
-        });
-
-        totalContainer.innerHTML = `<h4>TOTAL: ${totalAmount.toFixed(
-          2
-        )} EGP</h4>`;
-      }
-
-      // Function to confirm order
-      function confirmOrder() {
-        // Gather form data
-        var form = document.getElementById("orderForm");
-        var formData = new FormData(form);
-        var orderData = {
-          name: formData.get("name"),
-          email: formData.get("email"),
-          city: formData.get("city"),
-          address: formData.get("address"),
-          phoneNumber: formData.get("phone"),
-          items: [],
-          totalOrderPrice: 0,
-          orderProgress: "Pending",
-        };
-
-        // Log the gathered form data for debugging
-        console.log("Form Data:", orderData);
-
-        // Fetch cart items from local storage
-        var cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-        var totalAmount = 0;
-
-        cartItems.forEach((item) => {
-          var price = parseFloat(item.price);
-          var quantity = parseInt(item.quantity, 10);
-          var totalPrice = price * quantity;
-          totalAmount += totalPrice;
-
-          orderData.items.push({
-            itemName: item.name,
-            itemSize: item.size,
-            itemQuantity: quantity,
-            itemPrice: totalPrice.toFixed(2),
+          // Validate form inputs
+          form.querySelectorAll("input").forEach((input) => {
+            if (!input.value) {
+              input.classList.add("error");
+              console.log(`Added error class to ${input.name}`);
+              isValid = false;
+            } else {
+              input.classList.remove("error");
+              console.log(`Removed error class from ${input.name}`);
+            }
           });
-        });
 
-        orderData.totalOrderPrice = totalAmount.toFixed(2);
+          if (!isValid) {
+            console.log("Form is not valid, stopping submission");
+            return;
+          }
 
-        // Log the complete order data for debugging
-        console.log("Order Data:", orderData);
+          var formData = new FormData(form);
+          var orderData = {
+            name: formData.get("name"),
+            email: formData.get("email"),
+            city: formData.get("city"),
+            address: formData.get("address"),
+            phoneNumber: formData.get("phone"),
+            items: [],
+            totalOrderPrice: 0,
+            orderProgress: "Pending",
+          };
 
-        // Send order data to backend
-        fetch("http://localhost:3000/orderBCK", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(orderData),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("Order confirmed:", data);
-            alert("Order confirmed!");
-            // Optionally, clear cart and form
-            localStorage.removeItem("cart");
-            form.reset();
-            displayCheckoutItems(); // Update the checkout display
+          // Fetch cart items from local storage
+          var cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+          var totalAmount = 0;
+
+          cartItems.forEach((item) => {
+            var price = parseFloat(item.price);
+            var quantity = parseInt(item.quantity, 10);
+            var totalPrice = price * quantity;
+            totalAmount += totalPrice;
+
+            orderData.items.push({
+              itemName: item.name,
+              itemSize: item.size,
+              itemQuantity: quantity,
+              itemPrice: totalPrice.toFixed(2),
+            });
+          });
+
+          orderData.totalOrderPrice = totalAmount.toFixed(2);
+
+          // Send order data to backend
+          fetch("http://localhost:3000/orderBCK", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(orderData),
           })
-          .catch((error) => {
-            console.error("Error:", error);
-            alert("An error occurred. Please try again.");
-          });
-      }
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("Order confirmed:", data);
+              alert("Order confirmed!");
+              // Optionally, clear cart and form
+              localStorage.removeItem("cart");
+              form.reset();
+              displayCheckoutItems(); // Update the checkout display
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              alert("An error occurred. Please try again.");
+            });
+        }
 
-      // Call the function to display checkout items on page load
-      displayCheckoutItems();
+        // Add event listener to confirm order button
+        document
+          .getElementById("confirmOrderButton")
+          .addEventListener("click", confirmOrder);
+
+        // Call the function to display checkout items on page load
+        displayCheckoutItems();
+      });
     </script>
   </body>
 </html>
