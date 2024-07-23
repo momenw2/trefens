@@ -98,7 +98,6 @@ hr {
 }
 
 .totalContainer {
-  /* display: flex; */
   text-align: end;
   padding: 20px;
 }
@@ -109,10 +108,7 @@ hr {
 }
 
 .confirmButton {
-  /* display: flex; */
-  /* justify-content: center; */
   align-items: center;
-  /* margin-bottom: 20px; */
   margin-top: 20px;
   width: 90%;
   padding: 20px;
@@ -163,6 +159,7 @@ hr {
 .quantity-control button:hover {
   color: rgb(176, 175, 175);
 }
+
 .quantity-control input {
   width: 50px;
   text-align: center;
@@ -171,19 +168,22 @@ hr {
   margin: 0 5px;
   border: none;
   background: none;
+  /* Hide the default arrows in input type="number" */
+  -moz-appearance: textfield;
 }
 
-.itemBox {
-  display: flex;
-  align-items: center;
-  /* border-bottom: 1px solid #ddd; */
-  padding: 10px;
+.quantity-control input::-webkit-outer-spin-button,
+.quantity-control input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
+
 .itemBox img {
   width: 100px;
   height: 100px;
   margin-right: 10px;
 }
+
 .itemBox h4,
 .itemBox p,
 .itemBox .quantity-control,
@@ -191,11 +191,13 @@ hr {
   flex: 1;
   text-align: center;
 }
+
 .quantity-control {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .quantity-control button {
   margin: 0 5px;
 }
@@ -207,4 +209,118 @@ i {
 
 i:hover {
   color: red;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+  .mainContainer {
+    padding: 30px;
+  }
+
+  .itemsContainer {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .itemBox {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+
+  .itemBox img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+  }
+
+  .itemBox h4,
+  .itemBox p,
+  .itemBox .quantity-control,
+  .itemBox .fa-trash-o {
+    flex: unset;
+    text-align: left;
+    margin: 5px 0;
+  }
+
+  .quantity-control {
+    justify-content: flex-start;
+  }
+
+  .confirmButton {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .confirmButton a {
+    width: 100%;
+    text-align: center;
+    float: none;
+  }
+
+  .quantity-control button {
+    width: 25px;
+    height: 25px;
+    font-size: 16px;
+  }
+
+  .quantity-control input {
+    width: 40px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContainer {
+    padding: 20px;
+  }
+
+  .itemsContainer {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .itemBox {
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+
+  .itemBox img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 8px;
+  }
+
+  .itemBox h4,
+  .itemBox p,
+  .itemBox .quantity-control,
+  .itemBox .fa-trash-o {
+    flex: unset;
+    text-align: left;
+    margin: 5px 0;
+  }
+
+  .quantity-control {
+    justify-content: flex-start;
+  }
+
+  .confirmButton {
+    padding: 10px;
+  }
+
+  .confirmButton a {
+    padding: 12px;
+  }
+
+  .quantity-control button {
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+  }
+
+  .quantity-control input {
+    width: 30px;
+    font-size: 13px;
+  }
 }
