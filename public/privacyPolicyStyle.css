@@ -67,27 +67,6 @@ body {
   color: #5d00ff;
 }
 
-footer {
-  text-align: center;
-  padding: 10px 0;
-  background-color: #1a1a1a;
-  color: #888;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  font-size: 0.78em;
-  border-top: 1px solid #333;
-}
-
-footer p {
-  margin: 0;
-  font-size: 0.9em;
-}
-
-footer span {
-  color: whitesmoke;
-}
-
 .extra-space {
   margin-bottom: 40px;
 }
