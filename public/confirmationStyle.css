@@ -7,6 +7,7 @@ body {
   padding: 0;
   color: whitesmoke;
   font-family: "Poppins", sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 .mainContainer {
@@ -14,6 +15,7 @@ body {
   flex-direction: row;
   padding: 60px;
   justify-content: space-between;
+  box-sizing: border-box; /* Ensure padding does not cause overflow */
 }
 
 .dataContainer {
@@ -75,6 +77,7 @@ body {
   align-items: center;
   width: 100%;
 }
+
 .arrow-up {
   width: 0;
   height: 0;
@@ -103,7 +106,6 @@ hr {
 }
 
 .totalContainer {
-  /* display: flex; */
   text-align: end;
   padding: 20px;
 }
@@ -122,8 +124,6 @@ hr {
 
 .confirmButton a {
   text-decoration: none;
-  /* color: white; */
-  /* background-color: #4604b9; */
   border: 2px solid #4604b9;
   color: black;
   padding: 17px;
@@ -141,13 +141,14 @@ hr {
   padding: 10px 0;
   border-bottom: 1px solid #ddd;
 }
+
 .checkoutItemBox p {
   flex: 1;
   text-align: center;
 }
+
 .totalContainer {
   text-align: right;
-  /* padding: 10px 0; */
   font-size: 18px;
   font-weight: bold;
 }
@@ -193,4 +194,36 @@ hr {
   color: #666666c5;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mainContainer {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .dataContainer,
+  .checkContainer {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .dataContainer form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  .confirmButton a {
+    width: 50%;
+    text-align: center;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .mainContainer {
+    padding: 60px;
+  }
 }
