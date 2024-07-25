@@ -95,6 +95,7 @@ body {
   display: flex;
   justify-content: center;
   flex: 1; /* Allow the image to take available space */
+  margin-bottom: 40px;
 }
 
 .firstBoxImg img {
