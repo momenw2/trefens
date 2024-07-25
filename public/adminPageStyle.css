@@ -4,18 +4,19 @@
   font-family: "Poppins", sans-serif;
 }
 
+html,
 body {
   background-color: black;
   margin: 0;
   padding: 0;
   color: whitesmoke;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 .mainContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
   margin-top: 30px;
 }
 
@@ -70,4 +71,48 @@ body {
 
 #searchButton:hover {
   background-color: #218838;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .mainContainer a {
+    width: 70%;
+  }
+
+  .orderBox {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
+
+  #searchBar {
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .searchContainer {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 10px; /* Add padding for spacing */
+  }
+
+  #searchBar {
+    width: 80%;
+    margin-bottom: 10px;
+  }
+
+  #searchButton {
+    width: 100%;
+  }
+
+  .mainContainer a {
+    width: 70%;
+  }
+
+  .orderBox {
+    padding: 15px;
+    margin-bottom: 15px;
+  }
 }
