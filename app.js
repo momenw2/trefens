@@ -28,6 +28,7 @@ app.get("/checkout", (req, res) => res.render("checkoutPage"));
 app.get("/confirmation", (req, res) => res.render("confirmationPage"));
 app.get("/sizechart", (req, res) => res.render("sizeChart"));
 app.get("/privacyPolicy", (req, res) => res.render("privacyPolicyPage"));
+app.get("/shipping", (req, res) => res.render("shippingPage"));
 app.get("/AdminDB", (req, res) => res.render("adminPage"));
 app.get("/AdminOD", (req, res) => res.render("adminOrderDetails"));
 
