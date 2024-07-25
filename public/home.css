@@ -184,6 +184,12 @@ body {
 
   .contentFirstBox {
     padding: 0 20px;
+    margin-top: 0;
+    background-image: url("images/home/firstDivImg.jpeg");
+    background-color: rgba(255, 255, 255, 0.6);
+    background-blend-mode: lighten;
+    /* opacity: 0.6; */
+    background-repeat: no-repeat;
   }
 
   .firstBoxTxt h2 {
@@ -192,6 +198,7 @@ body {
 
   .firstBoxTxt p {
     font-size: 20px;
+    color: black;
   }
 
   .firstBoxImg img {
@@ -212,12 +219,23 @@ body {
     font-size: 30px;
   }
 
+  .contentFirstBox {
+    /* padding: 0 20px; */
+    margin-top: 0;
+    background-image: url("images/home/firstDivImg.jpeg");
+    background-color: rgba(255, 255, 255, 0.6);
+    background-blend-mode: lighten;
+    /* opacity: 0.6; */
+    background-repeat: no-repeat;
+  }
+
   .firstBoxTxt h2 {
     font-size: 25px;
   }
 
   .firstBoxTxt p {
     font-size: 18px;
+    color: black;
   }
 
   .firstBoxTxt a {
@@ -243,6 +261,16 @@ body {
     font-size: 24px;
   }
 
+  .contentFirstBox {
+    margin-top: 0;
+    /* padding: 0 20px; */
+    background-image: url("images/home/firstDivImg.jpeg");
+    background-color: rgba(255, 255, 255, 0.6);
+    background-blend-mode: lighten;
+    /* opacity: 0.6; */
+    background-repeat: no-repeat;
+  }
+
   .headerTxt h3 {
     font-size: 18px;
   }
@@ -257,6 +285,7 @@ body {
 
   .firstBoxTxt p {
     font-size: 16px;
+    color: black;
   }
 
   .firstBoxTxt a {
