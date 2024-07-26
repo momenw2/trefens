@@ -297,12 +297,12 @@ body {
 }
 
 /* Responsive CSS */
-@media (max-width: 1024px) {
+@media (max-width: 1030px) {
   .contentFirstBox,
   .contentSecondBox,
   .contentThirdBox {
     flex-direction: column;
-    padding: 0 10px;
+    padding: 0 30px;
   }
 
   .firstBoxImg img {
