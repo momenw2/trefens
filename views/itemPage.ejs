@@ -97,7 +97,7 @@
 
         try {
           const response = await fetch(
-            `http://localhost:3000/productBCK/item?category=${category}&name=${name}`
+            `/productBCK/item?category=${category}&name=${name}`
           );
           const data = await response.json();
 
